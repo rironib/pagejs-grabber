@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* Custom */
+
+button {
+  @apply w-full font-semibold cursor-pointer text-[#e4e4e7] px-4 py-3 rounded-md;
+}
+input {
+  @apply w-full bg-[#27272a] px-4 py-3 rounded-md border-2 border-[#3f3f46] outline-none;
+}
