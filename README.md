@@ -1,40 +1,139 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# SiteLike – Website Screenshot & Favicon Tool
 
-## Getting Started
+A simple web utility that generates a **1920x1080 `.webp` screenshot** and fetches the **highest-quality favicon** of any website via its domain.
 
-First, run the development server:
+Built with **Next.js (Pages Router)**, **Puppeteer**, and **Tailwind CSS**.
+
+---
+
+## 🚀 Features
+
+- ✅ Instant full-page screenshot of a website
+- ✅ Auto-favicon extraction (prefers Apple Touch Icon or highest-resolution PNG)
+- ✅ Clean and responsive UI
+- ✅ No temp files — saves directly to `/public/images/`
+- ✅ CORS restricted to specific origins (e.g. `localhost`, `www.sitelike.me`)
+
+---
+
+## 📦 Installation
+
+1. **Clone the repository:**
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/sitelike.git
+cd sitelike
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install dependencies:**
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+We recommend using `pnpm`, but `npm` or `yarn` also work.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```bash
+pnpm install
+# or
+npm install
+# or
+yarn install
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+3. **Run the development server:**
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm dev
+# or
+npm run dev
+```
 
-## Learn More
+Navigate to: `http://localhost:3000`
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## 🔧 Configuration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### ✅ Puppeteer Setup
 
-## Deploy on Vercel
+No special config is needed. Puppeteer is installed automatically and runs in headless mode to capture screenshots and parse favicons.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### ✅ CORS Configuration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+The API is restricted to requests from:
+
+- `http://localhost:3000`
+- `https://www.sitelike.me`
+- `https://admin.sitelike.me`
+
+Adjust this in `pages/api/process.js` if needed.
+
+---
+
+## 🌐 How to Use
+
+### 1. Paste or type a domain like `example.com`.
+
+### 2. Click **Generate**.
+
+- The app will:
+  - Normalize the URL (add `https://` if missing)
+  - Launch Puppeteer
+  - Capture a 1920x1080 `.webp` screenshot
+  - Extract the highest quality favicon available
+
+### 3. View Results
+
+- ✅ Screenshot: `/public/images/screenshot/example.com.webp`
+- ✅ Favicon: `/public/images/icon/example.com.png`
+
+You can also directly access them via:
+
+```
+http://localhost:3000/images/screenshot/example.com.webp
+http://localhost:3000/images/icon/example.com.png
+```
+
+---
+
+## 📁 Directory Structure
+
+```bash
+/public/
+  images/
+    screenshot/
+      example.com.webp
+    icon/
+      example.com.png
+/pages/
+  api/
+    process.js         # API route to handle screenshot + favicon
+/pages/
+  index.js             # Main UI
+```
+
+---
+
+## 🧪 Example API Request (Manual)
+
+```
+GET /api/process?domain=example.com
+```
+
+Returns:
+
+```json
+{
+  "favicon": "/images/icon/example.com.png",
+  "screenshot": "/images/screenshot/example.com.webp"
+}
+```
+
+---
+
+## 📋 License
+
+MIT — free to use, modify, and distribute.
+
+---
+
+## 👨‍💻 Author
+
+Built by [RONiB](https://github.com/rironib)
