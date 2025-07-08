@@ -40,3 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 /public/images
+/.idea
+public/file.svg
+public/globe.svg
+public/next.svg
+public/vercel.svg
+public/window.svg

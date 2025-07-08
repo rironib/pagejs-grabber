@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { RiSpam2Line } from "react-icons/ri";
@@ -70,7 +71,9 @@ export default function HomePage() {
       </Head>
       <div>
         <div className="bg-[#18181b] text-[#17c964] max-w-xl mx-auto p-4 font-bold text-4xl text-center rounded-b-xl">
-          SiteLike
+          <Link href="/" target="_blank">
+            SiteLike
+          </Link>
         </div>
 
         <main className="max-w-xl mx-auto p-4">
@@ -100,7 +103,11 @@ export default function HomePage() {
                   {loading ? "Generating..." : "Generate"}
                 </button>
 
-                <button onClick={handlePaste} className="bg-[#9353d3]">
+                <button
+                  disabled={loading}
+                  onClick={handlePaste}
+                  className="bg-[#9353d3]"
+                >
                   Paste
                 </button>
 
@@ -118,12 +125,12 @@ export default function HomePage() {
                 alt="Favicon"
                 width={64}
                 height={64}
-                className="border border-[#3f3f46] bg-[#12a150] rounded-xl"
+                className="border-2 border-[#3f3f46] bg-[#095028] rounded-xl"
               />
               <img
                 src={result.screenshot}
                 alt="Screenshot"
-                className="border border-[#3f3f46] bg-[#12a150] rounded-xl"
+                className="border-2 border-[#3f3f46] bg-[#095028] rounded-xl"
               />
             </div>
           )}
